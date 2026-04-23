@@ -4,10 +4,8 @@ library(Seurat)
 library(ggplot2)
 library(tidyverse)
 
-##panel D
-#create tumor subcluster
-meso.WS.Tumor <- subset(meso.WS, idents = c("Epithelioid tumor", "Epithelioid proliferating tumor",
-                                     "Sarcomatoid proliferating tumor", "Sarcomatoid tumor"))
+##panel D: Zoomed in Xenium image depicting the transition region on the 
+#whole slide surgical resection. 
 
 #crop for transition region
 crop <- Crop(meso.WS.Tumor[["fov"]], y = c(8500, 9100), x = c(5200, 6000), coords = "plot")
@@ -22,5 +20,5 @@ tumor.colors <- c(
   "Epithelioid proliferating tumor" = "#ff8fb3")
   
 #plot xenium zoomed image
-ImageDimPlot(meso.WS.Tumor, fov = "zoom", group.by = "refined_tumor_cluster", cols = cell.colors, border.size = 0, axes = TRUE)  + 
+ImageDimPlot(meso.WS.Tumor, fov = "zoom", group.by = "refined_tumor_cluster", cols = tumor.colors, border.size = 0, axes = TRUE)  + 
   theme(panel.grid = element_blank(), axis.ticks = element_blank(), axis.text = element_blank())
