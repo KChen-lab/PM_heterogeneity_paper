@@ -4,8 +4,11 @@ library(Seurat)
 library(monocle3)
 library(tidyverse)
 
+#figure 2A: umap of tumor cells states with the learned trajectory graph plotted
+#on top, created using monocle3 on the tumor cells only whole slide surgical resection object.
+
 #arrow placement for umap
-umap <- reducedDims(mesoTumor.traj)$UMAP
+umap <- reducedDims(meso.WS.Tumor.traj)$UMAP
 xmin <- min(umap[,1])
 ymin <- min(umap[,2])
 
@@ -14,8 +17,8 @@ tumor.colors <- c(
   "Sarcomatoid tumor" = "#006896", "Epithelioid tumor" = "#e84359", "Sarcomatoid proliferating tumor" = "#5abacc", 
   "Epithelioid proliferating tumor" = "#ff8fb3")
 
-#plot learned trajectroy umap
-p <- plot_cells(mesoTumor.traj, color_cells_by = "celltype_tumor", label_groups_by_cluster = FALSE,
+#plot learned trajectory umap
+plot_cells(meso.WS.Tumor.traj, color_cells_by = "celltype_tumor", label_groups_by_cluster = FALSE,
            label_leaves = FALSE, label_branch_points = FALSE, label_cell_groups = FALSE) + theme_void() +
   annotate("segment",
            x = xmin, xend = xmin + 2,
