@@ -4,7 +4,10 @@ library(Seurat)
 library(ggplot2)
 library(tidyverse)
 
-#panel A
+#panel A: umap of all cell types annotated in the whole slide surgical
+#resection Xenium Prime data. meso.WS is the xenium object generated in
+#the whole_slide_xenium_object.r file in the Seurat_objects_folder.
+
 #cell type colors
 cell.colors <- c(
   "Tumor cells" = "#5abacc", "NK cells" = "#7B68EE", "Alveolar macrophages" = "#afed7c",
@@ -17,11 +20,9 @@ cell.colors <- c(
   "Ambiguous" = "#E6E6FE", "Proliferating Treg" = "#1E90FF", "Proliferating NK cells" = "magenta")
 
 #plot UMAP
-p <- DimPlot(meso.WS, group.by = "tumor_collapsed", cols = cell.colors, label = FALSE, label.size = 4, raster = FALSE) +
+DimPlot(meso.WS, group.by = "tumor_collapsed", cols = cell.colors, label = FALSE, label.size = 4, raster = FALSE) +
   guides(color = guide_legend(ncol = 1, override.aes = list(size = 5))) +  theme_void() + 
   theme(legend.title = element_blank(), plot.title = element_text(hjust = 0.5)) + ggtitle("Cell Type UMAP")
-
-p
 
 
   
