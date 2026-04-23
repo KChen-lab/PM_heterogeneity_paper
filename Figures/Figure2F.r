@@ -5,6 +5,7 @@ library(ggplot2)
 library(tidyverse)
 
 #figure 2F: area plot for module scores of tumor state gene signatures.
+#source data (smooth.df) is in the supplementary data of the paper.
 
 #colors
 module.colors <- c(
