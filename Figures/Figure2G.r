@@ -4,6 +4,10 @@ library(Seurat)
 library(ggplot2)
 library(tidyverse)
 
+#Figure 2G: box and violin plot for cell circularity changes across
+#pseudotime buckets. Source data (morpho_long) is included in the
+#supplementary data in the paper.
+
 #colors
 module.colors <- c(
   "Epithelioid_signature1" = "#e84359", "Transition_signature1" = "#a29bfe",
