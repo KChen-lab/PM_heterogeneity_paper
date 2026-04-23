@@ -16,7 +16,7 @@ ymin <- min(umap[,2])
 epi.gene <- c("MSLN")
 
 #plot umap with MSLN expression
-p <- plot_cells(meso.WS.Tumor.traj, genes = epi.genes, label_cell_groups = FALSE, show_trajectory_graph = FALSE) + theme_void() +
+plot_cells(meso.WS.Tumor.traj, genes = epi.genes, label_cell_groups = FALSE, show_trajectory_graph = FALSE) + theme_void() +
   annotate("segment",
            x = xmin, xend = xmin + 2,
            y = ymin, yend = ymin,
