@@ -4,7 +4,8 @@ library(Seurat)
 library(ggplot2)
 library(tidyverse)
 
-##panel C
+##panel C: Xenium image colored by cell type for the whole slide surgical resection.
+
 #cell type colors
 cell.colors <- c(
   "Sarcomatoid tumor" = "#006896", "Epithelioid tumor" = "#e84359", "Sarcomatoid proliferating tumor" = "#5abacc", 
