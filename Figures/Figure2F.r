@@ -4,6 +4,8 @@ library(Seurat)
 library(ggplot2)
 library(tidyverse)
 
+#figure 2F: area plot for module scores of tumor state gene signatures.
+
 #colors
 module.colors <- c(
   "Epithelioid_signature1" = "#e84359", "Transition_signature1" = "#a29bfe",
