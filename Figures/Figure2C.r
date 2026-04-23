@@ -4,13 +4,16 @@ library(Seurat)
 library(monocle3)
 library(tidyverse)
 
+#figure 2C: umap with learned trajectory plotted and colored by pseudotime
+#for the tumor cell only whole slide surgical resection xenium object.
+
 #arrow placement for umap
-umap <- reducedDims(mesoTumor.traj)$UMAP
+umap <- reducedDims(meso.WS.Tumor.traj)$UMAP
 xmin <- min(umap[,1])
 ymin <- min(umap[,2])
 
 #plot umap colored by pseudotime
-p <- plot_cells(mesoTumor.traj, color_cells_by = "pseudotime", label_cell_groups = FALSE, label_leaves = FALSE,
+plot_cells(meso.WS.Tumor.traj, color_cells_by = "pseudotime", label_cell_groups = FALSE, label_leaves = FALSE,
            label_branch_points = FALSE) + theme_void() +
   annotate("segment",
            x = xmin, xend = xmin + 2,
