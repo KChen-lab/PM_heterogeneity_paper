@@ -4,6 +4,8 @@ library(Seurat)
 library(ggplot2)
 library(tidyverse)
 
+#Figure3C: umap of scRNA seq colored by numbat clones.
+
 #clone colors
 clone.colors <- c(
   "1" = "#55d6be", "2" = "#a29bfe", "3" = "#4e6cff")
