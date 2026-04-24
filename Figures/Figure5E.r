@@ -1,6 +1,8 @@
 #load libraries
 library(EnhancedVolcano)
 
+#Figure 5E: Volcano plot for significantly expressed genes between epithelioid and biphasic tumor ROIs from GeoMx DSP WTA data.
+
 #genes to label
 genes_to_label <- c("MSLN", "CALB2", "WT1", "CDH3", "AXL", "MYBL2",
                     "CD70", "GAS6", "LTBP2", "GAS6", "ITGB4",
