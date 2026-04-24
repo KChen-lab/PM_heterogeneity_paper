@@ -24,18 +24,18 @@ scRNA.WS <- scRNA.WS %>%
    FindClusters(resolution = 1) %>%
    RunUMAP(dims = 1:30)
    
- #find doublets 
- ## pK Identification (no ground-truth)
+#find doublets 
+#pK Identification (no ground-truth)
 sweep.res.list <- paramSweep(scRNA.WS, PCs = 1:10, sct = FALSE)
 sweep.stats <- summarizeSweep(sweep.res.list, GT = FALSE)
 bcmvn <- find.pK(sweep.stats)
 
-## Homotypic Doublet Proportion Estimate
+#Homotypic Doublet Proportion Estimate
 homotypic.prop <- modelHomotypic(annotations)
 nExp_poi <- round(0.075*nrow(scRNA.WS@meta.data))
 nExp_poi.adj <- round(nExp_poi*(1-homotypic.prop))
 
-## Run DoubletFinder 
+#Run DoubletFinder 
 scRNA.WS <- doubletFinder(scRNA.WS, PCs = 1:10, pN = 0.25, pK = 0.09, nExp = nExp_poi, reuse.pANN = NULL, sct = FALSE)
 
 #find cell markers per cluster
