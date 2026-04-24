@@ -4,18 +4,18 @@ library(Seurat)
 library(ggplot2)
 library(tidyverse)
 
-#create tumor only subcluster
-Idents(meso) <- "refined_tumor_cluster"
-mesoTumor <- subset(meso, idents = c("Epithelioid tumor", "Epithelioid proliferating tumor",
-                                     "Sarcomatoid proliferating tumor", "Sarcomatoid tumor"))
+#Figure 4D: bar plot of tumor state proportion per patient from the Xenium TMA data.
 
 #create df of tumor state counts
-df <- mesoTumor@meta.data %>%
+df <- meso.TMA.Tumor@meta.data %>%
   filter(!is.na(patient_number)) %>%
   group_by(patient_number, refined_tumor_cluster) %>%
   summarise(n = n(), .groups = "drop") %>%
   group_by(patient_number) %>%
   mutate(prop = n / sum(n))
+
+#filter out any NAs
+df <- df[!is.na(df$patient_number), ]
 
 #plot is
 tumor.colors <- c(
