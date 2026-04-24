@@ -4,18 +4,20 @@ library(Seurat)
 library(ggplot2)
 library(tidyverse)
 
+#Figure4C: umap of Xenium TMA tumor cells only colored by tumor state.
+
 #tumor colors
 cell.colors.tumor <- c(
   "Sarcomatoid tumor" = "#006896", "Epithelioid tumor" = "#e84359", "Sarcomatoid proliferating tumor" = "#5abacc", 
   "Epithelioid proliferating tumor" = "#ff8fb3")
 
 #arrow placement on umap
-umap <- Embeddings(mesosubTO, "umap")
+umap <- Embeddings(meso.TMA.tumor, "umap")
 xmin <- min(umap[,1])
 ymin <- min(umap[,2])
 
 #plot umap
-DimPlot(mesosubTO, group.by = "subcluster_label", label = FALSE, cols = cell.colors.tumor)  +  theme_void() +
+DimPlot(meso.TMA.tumor, group.by = "subcluster_label", label = FALSE, cols = cell.colors.tumor)  +  theme_void() +
   annotate("segment",
            x = xmin, xend = xmin + 2,
            y = ymin, yend = ymin,
