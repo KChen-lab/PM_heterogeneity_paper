@@ -4,6 +4,8 @@ library(Seurat)
 library(ggplot2)
 library(tidyverse)
 
+#Figure 4A: Xenium image of TMA colored by cell type annotations.
+
 #colors
 cell.colors <- c(
   "Sarcomatoid tumor" = "#006896", "Epithelioid tumor" = "#e84359", "Sarcomatoid proliferating tumor" = "#5abacc", 
@@ -17,5 +19,5 @@ cell.colors <- c(
   "Ambiguous" = "#E6E6FE")
 
 #plot TMA view
-ImageDimPlot(meso, fov = "fov", group.by = "refined_tumor_cluster", cols = cell.colors, border.size = 0) +
+ImageDimPlot(meso.TMA, fov = "fov", group.by = "refined_tumor_cluster", cols = cell.colors, border.size = 0) +
   theme(panel.grid = element_blank(), axis.ticks = element_blank(), axis.text = element_blank())
