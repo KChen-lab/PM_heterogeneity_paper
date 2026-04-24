@@ -4,6 +4,8 @@ library(Seurat)
 library(ggplot2)
 library(tidyverse)
 
+#Figure 4B: umap of Xenium TMA data colored by cell type annotation.
+
 #colors
 cell.colors <- c(
   "Tumor cells" = "#5abacc", "NK cells" = "#7B68EE", "Alveolar macrophages" = "#afed7c",
@@ -16,12 +18,12 @@ cell.colors <- c(
   "Pericytes" = "#CD5C5C", "Ambiguous" = "#E6E6FE")
 
 #arrow placement on UMAP
-umap <- Embeddings(meso, "umap")
+umap <- Embeddings(meso.TMA, "umap")
 xmin <- min(umap[,1])
 ymin <- min(umap[,2])
 
 #plot UMAP
-DimPlot(meso, group.by = "tumor_collapsed", cols = cell.colors, label = FALSE, label.size = 4, raster = FALSE) +
+DimPlot(meso.TMA, group.by = "tumor_collapsed", cols = cell.colors, label = FALSE, label.size = 4, raster = FALSE) +
   guides(color = guide_legend(ncol = 1, override.aes = list(size = 5))) +  theme_void() +
   annotate("segment",
            x = xmin, xend = xmin + 2,
