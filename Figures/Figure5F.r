@@ -1,6 +1,8 @@
 #load libraries
 library(EnhancedVolcano)
 
+#Figure 5F: Volcano plot for significantly expressed genes between epithelioid and biphasic TME ROIs from GeoMx DSP WTA data.
+
 #genes to label
 genes_to_label <- c("CD27", "ITGB4", "HAVCR2", "CD8A",
                     "CXCL11", "LAG3", "PRF1",
