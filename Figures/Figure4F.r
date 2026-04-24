@@ -4,6 +4,8 @@ library(Seurat)
 library(ggplot2)
 library(tidyverse)
 
+#figure 4F: single core xenium image of patient 4.1 colored by cell type annotation.
+
 #p4.1
 min.x = 8870.600
 max.x = 10176.828
@@ -11,10 +13,10 @@ min.y = 2861.564
 max.y = 4167.791
 
 #crop image 
-crop <- Crop(meso[["fov"]], x = c(min.x, max.x), y = c(min.y, max.y), coords = "tissue")
+crop <- Crop(meso.TMA[["fov"]], x = c(min.x, max.x), y = c(min.y, max.y), coords = "tissue")
 
 #add cropped image to new assay plot
-p4.1 <- meso
+p4.1 <- meso.TMA
 p4.1[["fov"]] <- crop
 DefaultBoundary(p4.1[["fov"]]) <- "segmentation"
 
