@@ -4,6 +4,8 @@ library(cellchat2)
 library(ggplot2)
 library(tidyverse)
 
+#Figure5A: cellchat comparative interaction weight network graph for Xenium meso TMA data.
+
 #colors
 my_cols <- c(
   "Tumor cells" = "#ADD8E6", "NK cells" = "#7B68EE", "Alveolar macrophages" = "#afed7c",
