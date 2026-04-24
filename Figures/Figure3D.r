@@ -4,6 +4,8 @@ library(Seurat)
 library(ggplot2)
 library(tidyverse)
 
+#figure 3D: umap of scRNA colored by cell type annotations.
+
 #colors
 cell.colors <- c(
   "Tumor cells" = "#5abacc", "Alveolar macrophages" = "#afed7c", "NK cells" = "#7B68EE",
