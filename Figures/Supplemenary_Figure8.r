@@ -4,12 +4,15 @@ library(Seurat)
 library(ggplot2)
 library(tidyverse)
 
+#Supplementary Figure 8: whole slide surgical resection Xenium imaged cropped to tissue core hole area.
+#Single core TMA image corresponding to tissue core whole. Colored by cell type annnotation.
+
 #crop for tissue core hole
-crop <- Crop(meso[["fov"]], y = c(7000, 9100), x = c(2000, 4000), coords = "plot")
+crop <- Crop(meso.WS[["fov"]], y = c(7000, 9100), x = c(2000, 4000), coords = "plot")
 
 #apply cropped coords
-meso[["zoom"]] <- crop
-DefaultBoundary(meso[["zoom"]]) <- "segmentation"
+meso.WS[["zoom"]] <- crop
+DefaultBoundary(meso.WS[["zoom"]]) <- "segmentation"
 
 #colors
 cell.colors <- c(
@@ -24,7 +27,7 @@ cell.colors <- c(
   "Ambiguous" = "#E6E6FE", "Proliferating Treg" = "#1E90FF", "Proliferating NK cells" = "magenta")
 
 #image plot
-ImageDimPlot(meso, fov = "zoom", group.by = "refined_tumor_cluster", cols = tumor.colors, border.size = 0.05, na.value = "black", border.color = "black") +
+ImageDimPlot(meso.WS, fov = "zoom", group.by = "refined_tumor_cluster", cols = cell.colors, border.size = 0.05, na.value = "black", border.color = "black") +
   theme(panel.grid = element_blank(), axis.ticks = element_blank(), axis.text = element_blank()) + theme(legend.position = "none")
 
 #crop for tissue core
@@ -35,10 +38,10 @@ min.y = 1368.732
 max.y = 2667.343
 
 #crop image 
-crop <- Crop(meso[["fov"]], x = c(min.x, max.x), y = c(min.y, max.y), coords = "tissue")
+crop <- Crop(meso.TMA[["fov"]], x = c(min.x, max.x), y = c(min.y, max.y), coords = "tissue")
 
 #add cropped image to new assay plot
-p6.1 <- meso
+p6.1 <- meso.TMA
 p6.1[["fov"]] <- crop
 DefaultBoundary(p6.1[["fov"]]) <- "segmentation"
 
