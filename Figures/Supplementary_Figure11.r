@@ -9,12 +9,12 @@ patient.colors <- c(
   "1" = "#ff3155", "2" = "#ffaf42", "3" = "#ffed5e", "4" = "#49f770", "5" = "#2daefd", "6" = "#9d4dff")
 
 #arrow placement on umap
-umap <- Embeddings(meso, "umap")
+umap <- Embeddings(meso.WS, "umap")
 xmin <- min(umap[,1])
 ymin <- min(umap[,2])
 
 #umap for patient ID
-DimPlot(meso, group.by = "patient_number", cols = patient.colors, label = FALSE, label.size = 4, raster = FALSE) +
+DimPlot(meso.WS, group.by = "patient_number", cols = patient.colors, label = FALSE, label.size = 4, raster = FALSE) +
   guides(color = guide_legend(ncol = 1, override.aes = list(size = 5))) +  theme_void() +
   annotate("segment",
            x = xmin, xend = xmin + 2,
