@@ -4,23 +4,21 @@ library(Seurat)
 library(ggplot2)
 library(tidyverse)
 
-##panel E: Dot plot showing marker gene expression for the four tumor states
-#using the tumor cell only whole slide surgical resection object.
+##panel E: Zoomed in Xenium image depicting the transition region on the 
+#whole slide surgical resection. 
 
-#order of cell types on dotplot
-cell.type.order <- c("Sarcomatoid tumor", "Sarcomatoid proliferating tumor",
-                     "Epithelioid proliferating tumor", "Epithelioid tumor")
+#crop for transition region
+crop <- Crop(meso.WS.Tumor[["fov"]], y = c(8500, 9100), x = c(5200, 6000), coords = "plot")
 
-#apply order
-meso.WS.Tumor$celltype_tumor <- factor(Idents(meso.WS.Tumor), levels = cell.type.order)
-Idents(meso.WS.Tumor) <- meso.WS.Tumor$celltype_tumor
+#apply cropped coords
+meso.WS.Tumor[["zoom"]] <- crop
+DefaultBoundary(meso.WS.Tumor[["zoom"]]) <- "segmentation"
 
-#plot dotplot
-DotPlot(meso.WS.Tumor, features = c("CDH1", "CDH3", "MSLN", "CALB2", "WT1",
-                               "TOP2A", "MKI67", "AURKA", "SNAI2", "TWIST1", "TWIST2", "MYBL2",
-                               "THBS2", "COL5A2", "LTBP2", "COL5A1", "AXL", "GAS6", "ITGB4"), 
-        group.by="celltype") + RotatedAxis() + scale_color_gradient(low = "lightgrey", high = "#1E90FF") +
-  ggplot2::theme( axis.title.x = ggplot2::element_text(size = 8), axis.title.y = ggplot2::element_text(size = 8),
-    axis.text.x = ggplot2::element_text(angle = 45, vjust = 1, hjust = 1, size = 8), axis.text.y = ggplot2::element_text(size = 8)) +
-  ggplot2::scale_y_discrete(labels = function(x) str_wrap(x, width = 16)) + 
-  theme(legend.text = element_text(size = 8)) + theme(legend.title = element_text(size = 8))
+#cell colors
+tumor.colors <- c(
+  "Sarcomatoid tumor" = "#006896", "Epithelioid tumor" = "#e84359", "Sarcomatoid proliferating tumor" = "#5abacc", 
+  "Epithelioid proliferating tumor" = "#ff8fb3")
+  
+#plot xenium zoomed image
+ImageDimPlot(meso.WS.Tumor, fov = "zoom", group.by = "refined_tumor_cluster", cols = tumor.colors, border.size = 0, axes = TRUE)  + 
+  theme(panel.grid = element_blank(), axis.ticks = element_blank(), axis.text = element_blank())
