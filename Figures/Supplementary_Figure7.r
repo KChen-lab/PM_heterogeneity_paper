@@ -16,7 +16,7 @@ g2m.genes.xen <- c("HMGB2", "CDK1", "NUSAP1", "UBE2C", "BIRC5", "TPX2", "TOP2A",
 trans.sig <- c("SNAI2", "TWIST1", "TWIST2", "MYBL2")
 
 #assign cell cycle scores
-meso <- CellCycleScoring(meso, s.features = s.genes.xen, g2m.features = g2m.genes.xen, set.ident = TRUE)
+meso.WS <- CellCycleScoring(meso.WS, s.features = s.genes.xen, g2m.features = g2m.genes.xen, set.ident = TRUE)
 
 #score transition signaturr with module score
 meso.WS <- AddModuleScore(meso.WS, features=list(trans.sig), name= "Transition_signature", ctrl = 50)
