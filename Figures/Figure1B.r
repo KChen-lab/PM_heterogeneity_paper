@@ -5,7 +5,8 @@ library(ggplot2)
 library(tidyverse)
 
 #figure 1B:  Spaitial image of cell type predictions from the whole slide
-#surgical resection visium spot level data. vis.WS is the 
+#surgical resection visium spot level data. vis.WS is the visium object generated in
+#the whole_slide_visium_object.r file in the Seurat_objects_folder. 
 
 #colors
 cell.colors <- c(
