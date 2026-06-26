@@ -21,4 +21,4 @@ tumor.colors <- c(
   
 #plot xenium zoomed image
 ImageDimPlot(meso.WS.Tumor, fov = "zoom", group.by = "refined_tumor_cluster", cols = tumor.colors, border.size = 0, axes = TRUE)  + 
-  theme(panel.grid = element_blank(), axis.ticks = element_blank(), axis.text = element_blank())
+  theme(panel.grid = element_blank(), axis.ticks = element_blank(), axis.text = element_blank()) + coord_flip()
