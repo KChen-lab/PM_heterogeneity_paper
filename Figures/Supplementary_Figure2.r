@@ -4,6 +4,7 @@ library(Seurat)
 library(ggplot2)
 library(tidyverse)
 
+#supplementary figure 4
 #genes to plot 
 features.to.plot <- c("CLDN5", "CD34", "ADGRL4", "PDGFRB", "CSPG4", "RGS5", "SLIT3", 
                       "PDGFRA", "POSTN", "PDPN", "FAP", "MMP11", "COMP",
