@@ -5,7 +5,7 @@ library(ggplot2)
 library(tidyverse)
 
 #plot dot plot
-DotPlot(meso.scRNA, features = c("MSLN", "CALB2","WT1", "AXL", "GAS6","COL5A1", "ITGB4",
+DotPlot(scRNA.WS, features = c("MSLN", "CALB2","WT1", "AXL", "GAS6","COL5A1", "ITGB4",
                                  "CD14", "CD163", "MRC1", "MARCO", "TREM2", "FCGR1A", "ETV5", "CD68", "LILRB2",
                                  "ITGAM", "MS4A1", "CD19", "CD79A", "MZB1", "IRF4",
                                  "CD38","NCAM1", "KLRD1", "NKG7", "CD2", "CD3E", "CD4", "CD8A",
