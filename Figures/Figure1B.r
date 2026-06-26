@@ -4,16 +4,15 @@ library(Seurat)
 library(ggplot2)
 library(tidyverse)
 
-#figure 1B: umap of four tumor state clusters from the whole slide surgical resection
-#Xenium Prime data. meso.WS.Tumor is the original meso.WS object subset to include 
-#only the tumor cells.
+#figure 1B:  Spaitial image of cell type predictions from the whole slide
+#surgical resection visium spot level data. vis.WS is the 
 
 #colors
-tumor.colors <- c(
-  "Sarcomatoid tumor" = "#006896", "Epithelioid tumor" = "#e84359", "Sarcomatoid proliferating tumor" = "#5abacc", 
-  "Epithelioid proliferating tumor" = "#ff8fb3")
+cell.colors <- c(
+  "Sarcomatoid Tumor" = "#006896", "Epithelioid Tumor" = "#e84359", "Tumor Transition" = "#5abacc",
+  "Interstitial Macrophages" = "#32CD32", "Smooth Muscle cells" = "#8B0000",
+  "Fibroblasts" = "#F39C12", "Stromal cells" = "#f1c40f", "B/Plasma cells" = "#bcbd22",
+  "Sarcomatoid-Immune Tumor" = "#afed7c")
 
-#plot UMAP
-DimPlot(meso.WS.Tumor, group.by = "refined_tumor_cluster", cols = tumor.colors, label = FALSE, label.size = 4, raster = FALSE) +
-  guides(color = guide_legend(ncol = 1, override.aes = list(size = 5))) +  theme_void() +
-  theme(legend.title = element_blank(),  plot.title = element_text(hjust = 0.5)) + ggtitle("Tumor Cell UMAP")
+#plot spatial image
+SpatialDimPlot(vis.WS, group.by = "refined_tumor_cluster", cols = cell.colors)
