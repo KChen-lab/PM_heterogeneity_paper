@@ -5,26 +5,20 @@ library(ggplot2)
 library(tidyverse)
 
 #panel A: umap of all cell types annotated in the whole slide surgical
-#resection Xenium Prime data. meso.WS is the xenium object generated in
-#the whole_slide_xenium_object.r file in the Seurat_objects_folder.
+#resection Visium spot level data. vis.WS is the visium object generated in
+#the whole_slide_visium_object.r file in the Seurat_objects_folder.
 
 #cell type colors
 cell.colors <- c(
-  "Tumor cells" = "#5abacc", "NK cells" = "#7B68EE", "Alveolar macrophages" = "#afed7c",
-  "Treg" = "#6A0DAD", "CD8+ T cells" = "#d62728",  "Interstitial mph prevascular" = "#32CD32",
-  "Proliferating CD8+ T cells" = "#9b59b6", "CD4+ T cells" = "#fd6c1d", "Smooth muscle cells" = "#8B0000",
-  "CAFs" = "#F39C12", "Plasma cells" = "#f1c40f", "Alveolar mph proliferating" = "#FFEA00",
-  "Mast cells" = "#CC5500", "Classical monocytes" = "#0B6623", "EC" = "#C71585", 
-  "Plasmacytoid DC" = "#8c564b", "DC2" = "#00FF7F",
-  "B cells" = "#bcbd22", "Lymphatic EC" = "pink", "Pericytes" = "#CD5C5C",
-  "Ambiguous" = "#E6E6FE", "Proliferating Treg" = "#1E90FF", "Proliferating NK cells" = "magenta")
+  "Sarcomatoid Tumor" = "#006896", "Epithelioid Tumor" = "#e84359", "Tumor Transition" = "#5abacc",
+  "Interstitial Macrophages" = "#32CD32", "Smooth Muscle cells" = "#8B0000",
+  "Fibroblasts" = "#F39C12", "Stromal cells" = "#f1c40f", "B/Plasma cells" = "#bcbd22",
+  "Sarcomatoid-Immune Tumor" = "#afed7c")
 
 #plot UMAP
-DimPlot(meso.WS, group.by = "tumor_collapsed", cols = cell.colors, label = FALSE, label.size = 4, raster = FALSE) +
+DimPlot(vis.WS, group.by = "refined_tumor_cluster", cols = cell.colors, label = FALSE, label.size = 4, raster = FALSE) +
   guides(color = guide_legend(ncol = 1, override.aes = list(size = 5))) +  theme_void() + 
   theme(legend.title = element_blank(), plot.title = element_text(hjust = 0.5)) + ggtitle("Cell Type UMAP")
-
-
   
   
 
