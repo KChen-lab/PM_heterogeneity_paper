@@ -4,21 +4,21 @@ library(Seurat)
 library(ggplot2)
 library(tidyverse)
 
-##panel D: Zoomed in Xenium image depicting the transition region on the 
-#whole slide surgical resection. 
+##panel D: Xenium image colored by cell type for the whole slide surgical resection.
 
-#crop for transition region
-crop <- Crop(meso.WS.Tumor[["fov"]], y = c(8500, 9100), x = c(5200, 6000), coords = "plot")
-
-#apply cropped coords
-meso.WS.Tumor[["zoom"]] <- crop
-DefaultBoundary(meso.WS.Tumor[["zoom"]]) <- "segmentation"
-
-#cell colors
-tumor.colors <- c(
+#cell type colors
+cell.colors <- c(
   "Sarcomatoid tumor" = "#006896", "Epithelioid tumor" = "#e84359", "Sarcomatoid proliferating tumor" = "#5abacc", 
-  "Epithelioid proliferating tumor" = "#ff8fb3")
-  
-#plot xenium zoomed image
-ImageDimPlot(meso.WS.Tumor, fov = "zoom", group.by = "refined_tumor_cluster", cols = tumor.colors, border.size = 0, axes = TRUE)  + 
-  theme(panel.grid = element_blank(), axis.ticks = element_blank(), axis.text = element_blank())
+  "Epithelioid proliferating tumor" = "#ff8fb3", "NK cells" = "#7B68EE", "Alveolar macrophages" = "#afed7c",
+  "Treg" = "#6A0DAD", "CD8+ T cells" = "#d62728",  "Interstitial mph prevascular" = "#32CD32",
+  "Proliferating CD8+ T cells" = "#9b59b6", "CD4+ T cells" = "#fd6c1d", "Smooth muscle cells" = "#8B0000",
+  "CAFs" = "#F39C12", "Plasma cells" = "#f1c40f", "Alveolar mph proliferating" = "#FFEA00",
+  "Mast cells" = "#CC5500", "Classical monocytes" = "#0B6623", "EC" = "#C71585", 
+  "Plasmacytoid DC" = "#8c564b", "DC2" = "#00FF7F",
+  "B cells" = "#bcbd22", "Lymphatic EC" = "pink", "Pericytes" = "#CD5C5C",
+  "Ambiguous" = "#E6E6FE", "Proliferating Treg" = "#1E90FF", "Proliferating NK cells" = "magenta")
+
+#plot xenium cell type annotated image
+ImageDimPlot(meso.WS, fov = "fov", group.by = "refined_tumor_cluster", cols = cell.colors, border.size = 0) + 
+  theme(panel.grid = element_blank(), axis.ticks = element_blank(), axis.text = element_blank()) + 
+  ggtitle("Cell Type Annotation") + coord_flip()
