@@ -1,7 +1,6 @@
 #load libraries
 set.seed(1234)
 library(Seurat)
-library(monocle3)
 library(ggplot2)
 library(tidyverse)
 
