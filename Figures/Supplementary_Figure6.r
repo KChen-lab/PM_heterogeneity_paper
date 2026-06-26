@@ -4,8 +4,21 @@ library(Seurat)
 library(ggplot2)
 library(tidyverse)
 
-#dot plot for tumor cells
-DotPlot(meso.scRNA.tumor, features = c("MSLN", "CALB2","WT1", "SNAI2", "TWIST1", "TWIST2", "ZEB1", 
-                                 "AXL", "GAS6", "COL5A1", "ITGB4"), group.by= "phenotype") + RotatedAxis() +
-  scale_color_gradient(low = "lightgrey", high = "#1E90FF") +
-  ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 90, vjust = 1, size = 10, hjust = 1))
+#genes to plot expression
+genes <- c("MSLN", "CDH1", "CALB2", "MKI67", "SNAI2", "MYBL2", "COL5A1", "AXL", "ITGB4")
+
+#plot monocle umaps
+plot_cells(mesoTumor.traj, genes = genes, label_cell_groups = FALSE, show_trajectory_graph = FALSE) + theme_void() +
+  annotate("segment",
+           x = xmin, xend = xmin + 2,
+           y = ymin, yend = ymin,
+           arrow = arrow(length = unit(0.2,"cm"))) +
+  annotate("segment",
+           x = xmin, xend = xmin,
+           y = ymin, yend = ymin + 2,
+           arrow = arrow(length = unit(0.2,"cm"))) +
+  annotate("text", x = xmin + 2, y = ymin - 0.5, label = "UMAP1") +
+  annotate("text", x = xmin - 0.5, y = ymin + 2, label = "UMAP2", angle = 90) + theme(
+    legend.title = element_blank(),
+    plot.title = element_text(hjust = 0.5))
+
