@@ -4,13 +4,13 @@ library(Seurat)
 library(ggplot2)
 library(tidyverse)
 
-#plot dot plot
-DotPlot(meso.scRNA, features = c("MSLN", "CALB2","WT1", "AXL", "GAS6","COL5A1", "ITGB4",
-                                 "CD14", "CD163", "MRC1", "MARCO", "TREM2", "FCGR1A", "ETV5", "CD68", "LILRB2",
-                                 "ITGAM", "MS4A1", "CD19", "CD79A", "MZB1", "IRF4",
-                                 "CD38","NCAM1", "KLRD1", "NKG7", "CD2", "CD3E", "CD4", "CD8A",
-                                 "FOXP3", "CTLA4", "TIGIT","TOP2A", "MKI67"), group.by= "refined_clusters") + RotatedAxis() +
-  scale_color_gradient(low = "lightgrey", high = "#1E90FF") +
-  ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 90, vjust = 1, size = 10, hjust = 1))
+#cell colors
+tumor.colors <- c(
+  "Sarcomatoid tumor" = "#006896", "Epithelioid tumor" = "#e84359", "Sarcomatoid proliferating tumor" = "#5abacc", 
+  "Epithelioid proliferating tumor" = "#ff8fb3")
+
+#plot umap
+DimPlot(meso.WS.Tumor, group.by = "refined_tumor_annotation", cols = tumor.colors, label = FALSE, label.size = 4, raster = FALSE) +
+  guides(color = guide_legend(ncol = 1, override.aes = list(size = 5)))
 
 
