@@ -3,6 +3,7 @@ set.seed(1234)
 library(Seurat)
 library(ggplot2)
 library(tidyverse)
+library(monocle3)
 
 #colors
 cell.cycle.colors <- c("G1" = "#00BA38", "S" = "#00BFC4", "G2M" = "#F8766D" , "Undecided" = "#C77CFF")
