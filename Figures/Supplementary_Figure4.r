@@ -5,20 +5,30 @@ library(monocle3)
 library(ggplot2)
 library(tidyverse)
 
-#genes to plot expression
-genes <- c("MSLN", "CDH1", "CALB2", "MKI67", "SNAI2", "MYBL2", "COL5A1", "AXL", "ITGB4")
+#genes to plot 
+features.to.plot <- c("CLDN5", "CD34", "ADGRL4", "PDGFRB", "CSPG4", "RGS5", "SLIT3", 
+                      "PDGFRA", "POSTN", "PDPN", "FAP", "MMP11", "COMP",
+                      "THBS2", "MYBL2", "LTBP2", "AXL", "GAS6", "ITGB4",
+                      "COL5A1", "COL5A2", "SNAI2", "TWIST1", "TWIST2", "TOP2A", "MKI67",
+                      "MSLN", "CALB2", "WT1", "CDH1", "CDH3",
+                      "CD14", "CD163", "ETV5", "CD68", "LILRB2",
+                      "ITGAM", "ITGAX", "MS4A1", "CD79A", "MZB1", "IRF4", "CD19", "CD1C", "CLEC10A",
+                      "KIT", "MS4A2", "CD38", "KLRD1", "CD2", "CD3E", "CD4", "CD8A", "CD247",
+                      "FOXP3", "CTLA4", "TIGIT")
 
-#plot monocle umaps
-plot_cells(mesoTumor.traj, genes = genes, label_cell_groups = FALSE, show_trajectory_graph = FALSE) + theme_void() +
-  annotate("segment",
-           x = xmin, xend = xmin + 2,
-           y = ymin, yend = ymin,
-           arrow = arrow(length = unit(0.2,"cm"))) +
-  annotate("segment",
-           x = xmin, xend = xmin,
-           y = ymin, yend = ymin + 2,
-           arrow = arrow(length = unit(0.2,"cm"))) +
-  annotate("text", x = xmin + 2, y = ymin - 0.5, label = "UMAP1") +
-  annotate("text", x = xmin - 0.5, y = ymin + 2, label = "UMAP2", angle = 90) + theme(
-    legend.title = element_blank(),
-    plot.title = element_text(hjust = 0.5))
+cell.type.order <- c("Ambiguous", "Proliferating NK cells", "NK cells", "Proliferating Treg", "Treg", "CD4+ T cells", 
+                     "Proliferating CD8+ T cells", "CD8+ T cells", "Mast cells", "DC2", "Plasmacytoid DC", 
+                     "Plasma cells", "B cells", "Classical monocytes", "Alveolar mph proliferating", 
+                     "Alveolar macrophages", "Interstitial mph prevascular", "Epithelioid tumor",
+                     "Epithelioid proliferating tumor", "Sarcomatoid proliferating tumor", "Sarcomatoid tumor", 
+                     "CAFs", "Smooth muscle cells", "Pericytes", "Lymphatic EC", "EC")
+
+#apply order
+meso.WS$celltype_tumor <- factor(Idents(meso.WS), levels = cell.type.order)
+Idents(meso.WS) <- meso.WS$celltype_tumor
+
+#plot dotplot
+DotPlot(meso.WS, features = features.to.plot) +
+  scale_color_gradient(low = "lightgrey", high = "#1E90FF") +
+  ggplot2::theme(axis.text.x = ggplot2::element_text(angle = 90, vjust = 1, size = 8, hjust = 1))
+  
