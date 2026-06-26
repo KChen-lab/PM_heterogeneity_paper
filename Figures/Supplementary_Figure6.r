@@ -3,6 +3,7 @@ set.seed(1234)
 library(Seurat)
 library(ggplot2)
 library(tidyverse)
+library(monocle3)
 
 #genes to plot expression
 genes <- c("MSLN", "CDH1", "CALB2", "MKI67", "SNAI2", "MYBL2", "COL5A1", "AXL", "ITGB4")
