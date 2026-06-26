@@ -1,6 +1,6 @@
 #load libraries
 set.seed(1234)
-library(fgsea)
+library(Seurat)
 library(ggplot2)
 library(tidyverse)
 
