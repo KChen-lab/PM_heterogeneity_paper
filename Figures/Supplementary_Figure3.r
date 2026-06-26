@@ -15,18 +15,6 @@ cell.colors <- c(
   "B cells" = "#bcbd22", "Lymphatic EC" = "pink", "Pericytes" = "#CD5C5C",
   "Ambiguous" = "#E6E6FE", "Proliferating Treg" = "#1E90FF", "Proliferating NK cells" = "magenta")
 
-#collapse tumor annotations
-meso.WS$tumor_collapsed <- meso.WS$refined_tumor_cluster
-tumor.levels <- c(
-  "Epithelioid tumor",
-  "Epithelioid proliferating tumor",
-  "Sarcomatoid proliferating tumor",
-  "Sarcomatoid tumor")
-
-meso.WS$tumor_collapsed[
-  meso.WS$tumor_collapsed %in% tumor.levels
-] <- "Tumor cells"
-
 #plot umap
-DimPlot(meso.WS, group.by = "tumor_collapsed", cols = cell.colors, label = FALSE, label.size = 4, raster = FALSE) +
+DimPlot(meso.WS, group.by = "refined_tumor_annotation", cols = cell.colors, label = FALSE, label.size = 4, raster = FALSE) +
   guides(color = guide_legend(ncol = 1, override.aes = list(size = 5)))
