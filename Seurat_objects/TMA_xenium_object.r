@@ -5,7 +5,7 @@ library(Seurat)
 library(tidyverse)
 
 #create seurat object for the tissue microarray (TMA)
-meso.TMA) <- LoadXenium("/path to data/", fov = "fov", assay = "Xenium")
+meso.TMA <- LoadXenium("/path to data/", fov = "fov", assay = "Xenium")
 
 #remove cells with fewer than 10 transcript counts
 meso.TMA <- subset(meso.TMA, subset = nCount_Xenium > 10)
