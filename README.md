@@ -1,10 +1,3 @@
-# Spatial resolution of tumor state plasticity in Pleural Mesothelioma
-This is the code repository for our paper. Raw data is in XXX. Source data of images is in supplementary data in the publication.
-
-The Xenium, Visium, scRNA sequencing, and GeoMx data generated in this study have been deposited in XXX.
-
-Study was published in XXX.
-
 # Abstract
 Pleural mesothelioma (PM) is an aggressive malignancy characterized by marked histological and molecular heterogeneity, particularly in biphasic tumors. While prior studies suggest that PM subtypes exist along a molecular continuum, the spatial organization of tumor states remain poorly defined.
 
